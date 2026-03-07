@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://c25cxli4x06t1"]
+
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_8kwpw"]
+[ext_resource type="Texture2D" uid="uid://cmox8nj5vxx7o" path="res://assets/sprites/slime_green.png" id="1_kuj21"]
+[ext_resource type="PackedScene" uid="uid://c5cw1d1fse4pm" path="res://scenes/killzone.tscn" id="2_7c8uh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hfh2"]
+atlas = ExtResource("1_kuj21")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xny4d"]
+atlas = ExtResource("1_kuj21")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6uer"]
+atlas = ExtResource("1_kuj21")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di77r"]
+atlas = ExtResource("1_kuj21")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2oip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hfh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xny4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6uer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di77r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwpgy"]
+size = Vector2(10, 12)
+
+[sub_resource type="GDScript" id="GDScript_sm1vv"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Slime" type="Node2D"]
+script = ExtResource("1_8kwpw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_d2oip")
+autoplay = "default"
+
+[node name="Killzone" parent="." instance=ExtResource("2_7c8uh")]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-1.42109e-14, 6)
+shape = SubResource("RectangleShape2D_rwpgy")
+script = SubResource("GDScript_sm1vv")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -5)
+target_position = Vector2(9, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -5)
+target_position = Vector2(-9, 0)

@@ -1,0 +1,192 @@
+[gd_scene load_steps=19 format=3 uid="uid://cp4qdkmc07hfc"]
+
+[ext_resource type="PackedScene" uid="uid://ce54pql7il4nq" path="res://scenes/player.tscn" id="1_f5wsf"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_vku2n"]
+[ext_resource type="Texture2D" uid="uid://8r2br4d4sflr" path="res://assets/sprites/pixil-frame-0 (1).png" id="2_rcv6l"]
+[ext_resource type="FontFile" uid="uid://25uw68idxkq0" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_yb2wg"]
+[ext_resource type="Texture2D" uid="uid://buqytwew6418u" path="res://assets/sprites/pixil-frame-0 (2).png" id="3_2dff6"]
+[ext_resource type="PackedScene" uid="uid://bbws3rfyv38tm" path="res://scenes/platform.tscn" id="3_5y4vd"]
+[ext_resource type="Texture2D" uid="uid://dp2ak53d3xr3r" path="res://assets/sprites/pixil-frame-0 (3).png" id="4_lwbpq"]
+[ext_resource type="PackedScene" uid="uid://db2y5eld64uur" path="res://scenes/coin.tscn" id="4_mmnej"]
+[ext_resource type="PackedScene" uid="uid://c5cw1d1fse4pm" path="res://scenes/killzone.tscn" id="5_4b32t"]
+[ext_resource type="Texture2D" uid="uid://b3mt84ikc5vot" path="res://assets/sprites/pixil-frame-0 (4).png" id="5_irjvi"]
+[ext_resource type="Texture2D" uid="uid://cb8cyy551qhpd" path="res://assets/sprites/pixil-frame-0 (5).png" id="6_28j2c"]
+[ext_resource type="PackedScene" uid="uid://c25cxli4x06t1" path="res://scenes/slime.tscn" id="6_gugxk"]
+[ext_resource type="FontFile" uid="uid://cv57u0anpjtks" path="res://assets/fonts/PixelOperator8.ttf" id="7_hmt1a"]
+[ext_resource type="Texture2D" uid="uid://c7xfuoqe27p44" path="res://assets/sprites/pixil-frame-0 (6).png" id="7_y1ssh"]
+[ext_resource type="Texture2D" uid="uid://3mpvxy54u124" path="res://assets/sprites/pixil-frame-0 (7).png" id="8_yl0ds"]
+[ext_resource type="Texture2D" uid="uid://mpdp045nvf18" path="res://assets/sprites/pixil-frame-0.png" id="11_bdx2k"]
+[ext_resource type="PackedScene" uid="uid://cx3kmnjs2p3j7" path="res://scenes/sparkle.tscn" id="19_guq0w"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ir78i"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(0, -12)
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_vku2n")
+
+[node name="ScoreLabel" type="Label" parent="GameManager"]
+offset_left = 2112.0
+offset_top = -1181.0
+offset_right = 2273.0
+offset_bottom = -1158.0
+theme_override_colors/font_color = Color(0.0784314, 0.596078, 0.862745, 1)
+theme_override_fonts/font = ExtResource("2_yb2wg")
+theme_override_font_sizes/font_size = 8
+text = "You collected X coins!"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Parallax" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0, -0.2)
+scroll_offset = Vector2(-151, -144)
+repeat_size = Vector2(150, 0)
+repeat_times = 20
+follow_viewport = false
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="Parallax/Parallax2D"]
+position = Vector2(46, 104)
+texture = ExtResource("11_bdx2k")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.01, -0.18)
+repeat_size = Vector2(180, 0)
+repeat_times = 20
+follow_viewport = false
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="Parallax/Parallax2D2"]
+position = Vector2(109, -49)
+texture = ExtResource("2_rcv6l")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.04, -0.16)
+repeat_size = Vector2(200, 2.08189e-12)
+repeat_times = 20
+follow_viewport = false
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="Parallax/Parallax2D3"]
+position = Vector2(-226, -49)
+texture = ExtResource("3_2dff6")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.08, -0.14)
+repeat_size = Vector2(200, 2.08189e-12)
+repeat_times = 20
+follow_viewport = false
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="Parallax/Parallax2D4"]
+position = Vector2(-43, -26)
+texture = ExtResource("4_lwbpq")
+
+[node name="Parallax2D5" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.12, -0.12)
+repeat_size = Vector2(300, 0)
+repeat_times = 20
+follow_viewport = false
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="Parallax/Parallax2D5"]
+position = Vector2(-47, -26)
+texture = ExtResource("5_irjvi")
+
+[node name="Parallax2D6" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.16, -0.1)
+repeat_size = Vector2(400, 0)
+repeat_times = 20
+follow_viewport = false
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="Parallax/Parallax2D6"]
+position = Vector2(-143, -26)
+texture = ExtResource("6_28j2c")
+
+[node name="Parallax2D7" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.18, -0.05)
+repeat_size = Vector2(500, 0)
+repeat_times = 20
+follow_viewport = false
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="Parallax/Parallax2D7"]
+position = Vector2(-89, -25)
+texture = ExtResource("7_y1ssh")
+
+[node name="Parallax2D8" type="Parallax2D" parent="Parallax"]
+scroll_scale = Vector2(0.25, 0)
+scroll_offset = Vector2(-170, -2)
+repeat_size = Vector2(600, 0)
+repeat_times = 20
+follow_viewport = false
+
+[node name="Pixil-frame-0" type="Sprite2D" parent="Parallax/Parallax2D8"]
+position = Vector2(-221, 23)
+texture = ExtResource("8_yl0ds")
+
+[node name="ground" type="Sprite2D" parent="."]
+position = Vector2(1417, 6910)
+rotation = -3.14159
+scale = Vector2(330.118, 45.323)
+texture = ExtResource("8_yl0ds")
+
+[node name="Player" parent="." instance=ExtResource("1_f5wsf")]
+position = Vector2(0, -44)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-1, -60)
+offset = Vector2(2.08189e-12, 2.08189e-12)
+ignore_rotation = false
+zoom = Vector2(4.5, 4.5)
+process_callback = 0
+limit_left = -1500
+limit_top = -10000
+limit_right = 2600
+limit_bottom = 120
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Killzone" parent="." instance=ExtResource("5_4b32t")]
+position = Vector2(109, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(52, 92)
+shape = SubResource("WorldBoundaryShape2D_ir78i")
+
+[node name="Ememies" type="Node" parent="."]
+
+[node name="Slime" parent="Ememies" instance=ExtResource("6_gugxk")]
+position = Vector2(502, -19)
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("3_5y4vd")]
+position = Vector2(-189, -284)
+
+[node name="Labels" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Labels"]
+anchors_preset = -1
+anchor_left = -0.00416667
+anchor_right = -0.00416667
+offset_left = -139.0
+offset_top = -84.0
+offset_right = 85.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0.315575, 0.579353, 0.979894, 1)
+theme_override_fonts/font = ExtResource("7_hmt1a")
+theme_override_font_sizes/font_size = 8
+text = "Press space to jump
+
+WASD or arrow keys
+to move, R to reset"
+metadata/_edit_use_anchors_ = true
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("4_mmnej")]
+position = Vector2(-229, -284)
+
+[node name="Sparkles" type="Node" parent="."]
+
+[node name="Sparkle" parent="Sparkles" instance=ExtResource("19_guq0w")]
+position = Vector2(-221, -284)
