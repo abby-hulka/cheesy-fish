@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://4k7l3l5rm15n"]
 
-[ext_resource type="AudioStream" uid="uid://b7rs6bc34w5w2" path="res://assets/music/endless.mp3" id="1_3okf0"]
+[ext_resource type="AudioStream" uid="uid://cqlcimsesgkep" path="res://assets/music/song.mp3" id="1_h16ah"]
 
-[node name="Music" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_3okf0")
-volume_db = 14.0
+[node name="Music1" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_h16ah")
+volume_db = 1.0
 autoplay = true
 max_distance = 10000.0

@@ -3,12 +3,11 @@ extends Node
 
 var temp = 100
 
-@onready var score_label: Label = $ScoreLabel
+@onready var cold_label: Label = $CanvasLayer/TextureRect/cold_label
 
 func add_point(temp):
-	score_label.text = str(temp) + "%"
-	print(int(temp))
+	cold_label.text = str(int(temp)) + "%"
+
 
 func sub_point(temp):
-	score_label.text = str(temp) + "%"
-	print(int(temp))
+	cold_label.text = str(int(temp)) + "%"
