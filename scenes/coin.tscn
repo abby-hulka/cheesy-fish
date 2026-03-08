@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://db2y5eld64uur"]
+[gd_scene load_steps=20 format=3 uid="uid://db2y5eld64uur"]
 
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_0xpu6"]
 [ext_resource type="Texture2D" uid="uid://pe1r57rj65r3" path="res://assets/sprites/coin.png" id="1_4wi63"]
-[ext_resource type="AudioStream" uid="uid://de84sbakj7sbg" path="res://assets/sounds/coin.wav" id="3_clupx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ok0ms"]
 atlas = ExtResource("1_4wi63")
@@ -210,7 +209,6 @@ scale = Vector2(1.68874, 1.69743)
 shape = SubResource("CircleShape2D_nmutw")
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_clupx")
 bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
