@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://iaybtq2och5j"]
+[gd_scene load_steps=4 format=3 uid="uid://iaybtq2och5j"]
 
 [ext_resource type="Script" path="res://scenes/bad_end.gd" id="1_ocn5m"]
+[ext_resource type="Texture2D" uid="uid://bxhyjv32k0sh4" path="res://assets/sprites/qrcode.png" id="2_2oscj"]
+[ext_resource type="FontFile" uid="uid://25uw68idxkq0" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_riq4v"]
 
 [node name="Bad_End" type="Control"]
 layout_mode = 3
@@ -22,10 +24,27 @@ color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 718.0
-offset_top = 289.0
-offset_right = 1241.0
-offset_bottom = 624.0
-theme_override_font_sizes/font_size = 64
-text = "You Died"
+offset_left = 77.0
+offset_top = 83.0
+offset_right = 1842.0
+offset_bottom = 626.0
+theme_override_fonts/font = ExtResource("2_riq4v")
+theme_override_font_sizes/font_size = 40
+text = "You didn't survive the winter
+
+
+Countless other cats live this reality every year.
+
+With VOKRA, help them find a home
+
+
+donate here"
 horizontal_alignment = 1
+
+[node name="QrCode" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 757.0
+offset_top = 491.0
+offset_right = 1157.0
+offset_bottom = 891.0
+texture = ExtResource("2_2oscj")
