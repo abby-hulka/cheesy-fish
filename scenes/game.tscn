@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cp4qdkmc07hfc"]
+[gd_scene load_steps=32 format=3 uid="uid://cp4qdkmc07hfc"]
 
 [ext_resource type="PackedScene" uid="uid://ce54pql7il4nq" path="res://scenes/player.tscn" id="1_f5wsf"]
 [ext_resource type="Texture2D" uid="uid://2a25nvmad1tk" path="res://assets/sprites/Oxford_Blue.png" id="1_ukkf5"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://wr1vqwpppktx" path="res://assets/sprites/sidewalk_tilesheet.png" id="12_gaie0"]
 [ext_resource type="PackedScene" uid="uid://cx3kmnjs2p3j7" path="res://scenes/sparkle.tscn" id="19_guq0w"]
 [ext_resource type="PackedScene" uid="uid://cd1u366lgjn3q" path="res://scenes/Campfire.tscn" id="21_suob1"]
+[ext_resource type="PackedScene" uid="uid://drf44xlr4wjjs" path="res://scenes/goal.tscn" id="23_m4it3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4dcqy"]
 texture = ExtResource("12_gaie0")
@@ -374,5 +375,11 @@ position = Vector2(257, -313)
 
 [node name="Campfire4" parent="Fires" instance=ExtResource("21_suob1")]
 position = Vector2(2146, -9)
+
+[node name="Goal" parent="." instance=ExtResource("23_m4it3")]
+position = Vector2(3483, -7)
+
+[node name="Goal2" parent="." instance=ExtResource("23_m4it3")]
+position = Vector2(-110, -22)
 
 [connection signal="cold_changed" from="Player" to="GameManager/CanvasLayer/Cold_meter" method="_on_player_cold_changed"]
