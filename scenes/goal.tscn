@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://drf44xlr4wjjs"]
+[gd_scene load_steps=5 format=3 uid="uid://c85tuonik527k"]
 
-[ext_resource type="Script" path="res://goal.gd" id="1_75cqq"]
+[ext_resource type="Script" path="res://scenes/goal.gd" id="1_r2ee8"]
+[ext_resource type="Texture2D" uid="uid://bxhyjv32k0sh4" path="res://assets/sprites/qrcode.png" id="2_omcsn"]
+[ext_resource type="FontFile" uid="uid://25uw68idxkq0" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_osbp8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3dhr"]
 size = Vector2(20, 35)
 
 [node name="Goal" type="Area2D"]
 collision_mask = 2
-script = ExtResource("1_75cqq")
+script = ExtResource("1_r2ee8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3.5)
@@ -24,13 +26,32 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
 layout_mode = 0
-offset_left = 811.0
-offset_top = 402.0
-offset_right = 1090.0
-offset_bottom = 490.0
+offset_left = -427.0
+offset_top = 89.0
+offset_right = 2333.0
+offset_bottom = 632.0
+rotation = -0.00228291
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "You win !"
+theme_override_fonts/font = ExtResource("2_osbp8")
+theme_override_font_sizes/font_size = 40
+text = "You made it to the shleter despite the hardships!
+
+Though many animals may not be so lucky :(
+
+with your help VOKRA can better the lives of
+cats with unfortunate circumstances!
+
+
+
+donate here :D"
 horizontal_alignment = 1
+
+[node name="QrCode" type="TextureRect" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_left = 758.0
+offset_top = 524.0
+offset_right = 1158.0
+offset_bottom = 924.0
+texture = ExtResource("2_omcsn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
