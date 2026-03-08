@@ -11,7 +11,10 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	if is_dead:
+		move_and_slide()
+		return
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -19,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
 		Engine.time_scale = 1
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	#Get the input direction: -1, 0, 1
@@ -37,11 +40,11 @@ func _physics_process(delta: float) -> void:
 	#play animations
 	
 	if is_on_floor():
-		if direction == 0:
+		if direction == 0 and not is_dead:
 			animated_sprite.play("idle")
-		else:
+		elif direction != 0 and not is_dead:
 			animated_sprite.play("run")
-	else:
+	elif not is_on_floor() and not is_dead:
 		animated_sprite.play("jump")
 		
 	if direction:
@@ -89,15 +92,26 @@ func _process(delta: float):
 
 func freeze_to_death():
 	is_dead = true
+	velocity = Vector2.ZERO
+	
+	#remove player control
+	set_process_input(false)
+	set_process_unhandled_input(false)
+	
 	print("The player froze!")
 	Engine.time_scale = 0.5
-	timer.start()
-	get_tree().create_timer(10).timeout
 	
-	get_tree().change_scene_to_file("res://end_cutscene.tscn")
+	animated_sprite.play("death") #death anim
+	
+	timer.start()
+	
+	await get_tree().create_timer(2).timeout
+	Engine.time_scale = 1.0
+	
+	get_tree().change_scene_to_file("res://scenes/bad_end.tscn")
 	
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1 
-	get_tree().reload_current_scene()
+	await get_tree().reload_current_scene()
 	

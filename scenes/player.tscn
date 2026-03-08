@@ -1,12 +1,31 @@
-[gd_scene load_steps=15 format=3 uid="uid://ce54pql7il4nq"]
+[gd_scene load_steps=19 format=3 uid="uid://ce54pql7il4nq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_jitc1"]
 [ext_resource type="Texture2D" uid="uid://b6upaef6laa64" path="res://assets/sprites/cat.png" id="2_y5d80"]
-[ext_resource type="AudioStream" uid="uid://bagnf13a855b6" path="res://assets/sounds/jump.wav" id="3_fl6ht"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1rlg"]
 atlas = ExtResource("2_y5d80")
 region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7cwe"]
+atlas = ExtResource("2_y5d80")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8b8e"]
+atlas = ExtResource("2_y5d80")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmcww"]
+atlas = ExtResource("2_y5d80")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpsj0"]
+atlas = ExtResource("2_y5d80")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c34i3"]
+atlas = ExtResource("2_y5d80")
+region = Rect2(64, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7eutn"]
 atlas = ExtResource("2_y5d80")
@@ -45,10 +64,25 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t1rlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7cwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8b8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmcww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpsj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c34i3")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -118,16 +152,13 @@ script = ExtResource("1_jitc1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_6lnjg")
-animation = &"jump"
-autoplay = "idle"
+animation = &"death"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 5
 position = Vector2(-0.5, -6)
 shape = SubResource("RectangleShape2D_awt0g")
-
-[node name="jumpSound" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = ExtResource("3_fl6ht")
 
 [node name="Timer" type="Timer" parent="."]
