@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cp4qdkmc07hfc"]
+[gd_scene load_steps=29 format=3 uid="uid://cp4qdkmc07hfc"]
 
 [ext_resource type="PackedScene" uid="uid://ce54pql7il4nq" path="res://scenes/player.tscn" id="1_f5wsf"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_vku2n"]
@@ -92,9 +92,31 @@ sources/2 = SubResource("TileSetAtlasSource_4dcqy")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ir78i"]
 
+[sub_resource type="Curve" id="Curve_pnctw"]
+_data = [Vector2(0.025641, 0.991688), 0.0, 0.0, 0, 0, Vector2(0.875, 0.21867), -1.87298, -1.87298, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1abhs"]
+curve = SubResource("Curve_pnctw")
+
+[sub_resource type="Gradient" id="Gradient_m56dt"]
+offsets = PackedFloat32Array(0.225352, 0.707747)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dmohu"]
+gradient = SubResource("Gradient_m56dt")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_txg6s"]
 particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
+emission_shape = 3
+emission_box_extents = Vector3(500, 1, 1)
+gravity = Vector3(45, 98, 0)
+scale_max = 4.0
+color_initial_ramp = SubResource("GradientTexture1D_dmohu")
+alpha_curve = SubResource("CurveTexture_1abhs")
+turbulence_enabled = true
+turbulence_influence_min = 0.02
+turbulence_influence_max = 0.08
 
 [node name="Game" type="Node2D"]
 position = Vector2(0, -12)
@@ -292,9 +314,6 @@ position = Vector2(-40, -94)
 [node name="Sparkle2" parent="Sparkles" instance=ExtResource("19_guq0w")]
 position = Vector2(614, -94)
 
-[node name="Node2D" parent="." instance=ExtResource("21_suob1")]
-position = Vector2(-143, -527)
-
 [node name="Campfire" parent="." instance=ExtResource("21_suob1")]
 position = Vector2(-40, -40)
 
@@ -302,7 +321,11 @@ position = Vector2(-40, -40)
 position = Vector2(614, -40)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 32
+position = Vector2(0, -400)
+amount = 200
 process_material = SubResource("ParticleProcessMaterial_txg6s")
+lifetime = 10.0
+preprocess = 30.0
+visibility_rect = Rect2(-883.641, -1.9639, 2236.86, 1364.82)
 
 [connection signal="cold_changed" from="Player" to="GameManager/CanvasLayer/Cold_meter" method="_on_player_cold_changed"]

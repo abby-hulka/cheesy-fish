@@ -1,11 +1,14 @@
 extends Node
 
 
-var score = 0
+var temp = 100
 
 @onready var score_label: Label = $ScoreLabel
 
-func add_point():
-	score+= 1
-	score_label.text = "You collected " + str(score) + "/45 coins!"
-	
+func add_point(temp):
+	score_label.text = str(temp) + "%"
+	print(int(temp))
+
+func sub_point(temp):
+	score_label.text = str(temp) + "%"
+	print(int(temp))

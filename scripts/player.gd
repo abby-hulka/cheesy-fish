@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 
-const SPEED = 100.0
+const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
+@onready var game_manager: Node = %GameManager
 @onready var animated_sprite: AnimatedSprite2D= $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
@@ -54,10 +55,10 @@ func _physics_process(delta: float) -> void:
 signal cold_changed(current_cold: float)
 
 @export var max_cold: float = 100
-@export var cold_increase_rate: float = 5.0 #freeze/sec
-@export var warm_rate: float = 15.0 #faster than speed
+@export var cold_increase_rate: float = 5 #freeze/sec
+@export var warm_rate: float = 15 #faster than speed
 
-var current_cold: float = 0.0
+var current_cold: float = 0
 var is_near_fire: bool = false #safezone tracker
 var is_dead: bool = false
 
@@ -69,9 +70,12 @@ func _process(delta: float):
 	#near fire check
 	if is_near_fire:
 		current_cold -= warm_rate * delta
+		game_manager.sub_point(current_cold)
+		
 	else:
 		# Increase the cold over time using delta (time since last frame)
 		current_cold += cold_increase_rate * delta
+		game_manager.add_point(current_cold)
 	
 	# Clamp prevents the cold from going below 0 or above max_cold
 	current_cold = clamp(current_cold, 0.0, max_cold)
@@ -88,6 +92,9 @@ func freeze_to_death():
 	print("The player froze!")
 	Engine.time_scale = 0.5
 	timer.start()
+	get_tree().create_timer(10).timeout
+	
+	get_tree().change_scene_to_file("res://end_cutscene.tscn")
 	
 
 func _on_timer_timeout() -> void:
